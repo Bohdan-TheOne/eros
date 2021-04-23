@@ -1,15 +1,12 @@
 import React from 'react'
+import './css/Footer.css'
 
 function Footer() {
     return (
-        <footer>
-            <nav>
-                <ul>
-                    <li>555-555-555</li>
-                    <li><a href='https://github.com/Bohdan-TheOne/eros'><img src='https://github.com/fluidicon.png'/> GitHub page</a></li>
-                    <li><a href="/about"></a>About Us</li>
-                </ul>
-            </nav>
+        <footer className='site-footer'>
+            <div className='footer-option'>555-555-555</div>
+            <div className='footer-option'><a href='https://github.com/Bohdan-TheOne/eros' target='blank'><img src='https://github.com/fluidicon.png' alt='github' height='25'/> GitHub page</a></div>
+            <div className='footer-option'><a href="/about">About Us</a></div>
         </footer>
     )
 }
