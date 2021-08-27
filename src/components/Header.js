@@ -5,6 +5,8 @@ import Home from './Home'
 import Current from './Current'
 import Devices from './Devices'
 import About from './About'
+import Sensors from './Sensors'
+import SensorData from './SensorData'
 
 class Header extends Component {
     render() {
@@ -24,6 +26,9 @@ class Header extends Component {
                         <Route path='/current'><Current /></Route>
                         <Route path='/devices'><Devices /></Route>
                         <Route path='/about'><About /></Route>
+                        /* TEST */
+                        <Route path='/sensors'><Sensors /></Route>
+                        <Route path='/data'><SensorData /></Route>
                     </Switch>
                 </Router>
             </div>
