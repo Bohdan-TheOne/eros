@@ -1,32 +1,38 @@
 import React, { Component } from 'react'
 import './css/beautiful-list.css'
+import { API_Request } from "../API"
 
 
 class Devices extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            deviceList: {}
+        }
+    }
+
+    refreshDevicesList() {
+        API_Request("devices").fetchAll()
+            .then(res => {
+                this.setState({
+                    deviceList: res.data
+                });
+            })
+            .catch(err => console.log(err))
+    }
+
+    componentDidMount() {
+        this.refreshDevicesList();
+    }
+
     render() {
-        // Get Devices from apollo
-        // TEST-DATA
-        var list = [
-            {
-                key: 'abcd-efgh',
-                name: 'first',
-                model: 'zcx-3090-ti'
-            },
-            {
-                key: 'ijkl-mnop',
-                name: 'second',
-                model: 'zcx-2060s'
-            },
-            {
-                key: 'qrst-uvwx',
-                name: 'third',
-                model: 'zcx-1650'
-            }
-        ]
-        const devs = list.map((elem, index) => {
+        const devs = Object.keys(this.state.deviceList).map((key, index) => {
             return (
-                <li key={elem.key} className='li-colored'>
-                    <h4>{elem.name}</h4><pre>   - {elem.model}</pre>
+                <li key={key} className='li-colored'>
+                    <a href={`/devices/${key}/sensors`}>
+                        <h4>{this.state.deviceList[key].name}</h4><h3><pre>   -   </pre>{this.state.deviceList[key].model}</h3>
+                    </a>
                 </li>
             )
         })
